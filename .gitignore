@@ -3,7 +3,7 @@
 
 # User-specific stuff:
 .vscode/
-myenv/
+venv/
 .idea/
 .idea/**
 .idea/**/workspace.xml
