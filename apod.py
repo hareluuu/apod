@@ -1,9 +1,12 @@
-import requests
-import api_key
-import praw
+"""This script will pull posts from the NASA APOD page via their api and
+   and post it to the r/nasa_apod subreddit"""
+
 import datetime
 import json
 import time
+import requests
+import praw
+import credentials
 
 
 def get_date():
@@ -37,7 +40,7 @@ def get_date():
 def get_apod(api_date):
     """Get the data from the NASA APOD api and return the relevant JSON sections"""
 
-    url = "https://api.nasa.gov/planetary/apod?api_key={}&date={}".format(api_key.api_key, api_date)
+    url = "https://api.nasa.gov/planetary/apod?api_key={}&date={}".format(credentials.api_key, api_date)
     r = requests.get(url)
 
     if "copyright" in r.json():
@@ -70,23 +73,14 @@ def post_to_reddit():
 
 
 
-reddit = praw.Reddit(client_id=api_key.client_id,
-                     client_secret=api_key.client_secret,
+reddit = praw.Reddit(client_id=credentials.client_id,
+                     client_secret=credentials.client_secret,
                      user_agent='Apod bot 1.0 by /u/harelu',
                      username="apod_bot",
-                     password=api_key.password)
+                     password=credentials.password)
 
 
 def main():
-    for i in range(5):
+    while True:
         post_to_reddit()
-
         time.sleep(20)
-
-
-
-
-
-
-
-
