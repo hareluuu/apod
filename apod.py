@@ -84,3 +84,7 @@ def main():
     while True:
         post_to_reddit()
         time.sleep(20)
+
+
+if __name__ == "__main__":
+    main()
