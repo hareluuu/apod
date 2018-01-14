@@ -7,6 +7,7 @@ import time
 
 
 def get_date():
+    """Persistently handle posted submissions by storing the dates in a JSON file"""
 
     with open("dates.json", "r") as f:
         posted = json.load(f)
@@ -57,7 +58,7 @@ def get_apod(api_date):
 
 def post_to_reddit():
     """Make a submission from the data returned by the get_apod() function and
-    post it to r/nasa_apod. Comment on the submission with the explanation of the photo"""
+    post it to r/nasa_apod. After submitting, comment on the submission with the explanation of the photo"""
 
     title, explanation, url, hdurl, copy = get_apod(get_date())
     explanation += "\n\nHD version: {}\n\n*Image Credit and Copyright: {}*".format(hdurl, copy)
