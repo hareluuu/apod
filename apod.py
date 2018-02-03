@@ -81,9 +81,8 @@ reddit = praw.Reddit(client_id=credentials.client_id,
 
 
 def main():
-    while True:
-        post_to_reddit()
-        time.sleep(20)
+    post_to_reddit()
+    time.sleep(3600)
 
 
 if __name__ == "__main__":
